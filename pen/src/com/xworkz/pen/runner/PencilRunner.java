@@ -1,28 +1,24 @@
-package com.xworkz.bottles.runner;
+package com.xworkz.pen.runner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.xworkz.bottles.constant.ConnectionData;
+import com.xworkz.pen.constant.ConnectionData;
 
-
-
-public class BottleRunner {
+public class PencilRunner {
 	
 	public static void main(String[] args) {
-		
-		
 		try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(), 
-				ConnectionData.USERNAME.getValue(),ConnectionData.PASSWORD.getValue());
-				Statement statment=connection.createStatement()){
-			
+				ConnectionData.USERNAME.getValue(), ConnectionData.PASSWORD.getValue());
+				
+				Statement statement=connection.createStatement()){
 			System.out.println("class is connectd");
-				String query="insert into bottle_info values('speedex stainless',377)";
-				String query1="update bottle_info set bottle_name='pepsi' where bottle_name='speedex stainless'";
-						statment.execute(query);
-						int row=statment.executeUpdate(query1);
+				String query="insert into pen_info values('red',5)";
+				String query1="update pen_info set pen_name='RED' where pen_name='red'";
+						statement.execute(query);
+						int row=statement.executeUpdate(query1);
 						if(row>=1) {
 							System.out.println("this is updated");
 						}else {
@@ -34,7 +30,7 @@ public class BottleRunner {
 		exception.printStackTrace();
 		
 		}
-		
 	}
+
 
 }

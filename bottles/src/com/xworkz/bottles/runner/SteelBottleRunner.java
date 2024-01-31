@@ -7,20 +7,17 @@ import java.sql.Statement;
 
 import com.xworkz.bottles.constant.ConnectionData;
 
-
-
-public class BottleRunner {
+public class SteelBottleRunner {
 	
-	public static void main(String[] args) {
-		
+          public static void main(String[] args) {
 		
 		try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(), 
 				ConnectionData.USERNAME.getValue(),ConnectionData.PASSWORD.getValue());
 				Statement statment=connection.createStatement()){
 			
 			System.out.println("class is connectd");
-				String query="insert into bottle_info values('speedex stainless',377)";
-				String query1="update bottle_info set bottle_name='pepsi' where bottle_name='speedex stainless'";
+				String query="insert into bottle_info values('avails',377)";
+				String query1="update bottle_info set bottle_name='maza' where bottle_name='avails'";
 						statment.execute(query);
 						int row=statment.executeUpdate(query1);
 						if(row>=1) {
@@ -36,5 +33,6 @@ public class BottleRunner {
 		}
 		
 	}
+
 
 }

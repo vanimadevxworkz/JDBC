@@ -5,18 +5,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.xworkz.book.constant.BooksConncetion;
+import com.xworkz.book.constant.ConnectionData;
 
 public class BookRunner {
 	
 	
 		public static void main(String[] args) {
-			try(Connection connection=DriverManager.getConnection( BooksConncetion.URL.getValue(),
-					 BooksConncetion.USERNAME.getValue(), BooksConncetion.PASSWORD.getValue());
+			try(Connection connection=DriverManager.getConnection( ConnectionData.URL.getValue(),
+					 ConnectionData.USERNAME.getValue(), ConnectionData.PASSWORD.getValue());
 					Statement statment=connection.createStatement()){
 						System.out.println("class is connceted");
-						String quary="insert into book_details values('wings of fire','apj')";
-						statment.execute(quary);
+						String query="insert into book_details values('wings of fire','apj')";
+						String query1="update book_details set book_name='jenny' where book_name='wings of fire' ";
+						statment.execute(query);
+						int rs=statment.executeUpdate(query1);
+						if(rs>=1) {
+							System.out.println("this is update");
+						}else {
+							System.out.println("this not updated");
+						}
 					}
 			catch(SQLException exception) {
 				System.out.println("class in not connected");
