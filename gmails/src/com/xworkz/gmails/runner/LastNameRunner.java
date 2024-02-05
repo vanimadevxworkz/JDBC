@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 import com.xworkz.gmails.constant.ConnectionData;
 
-public class PasswordRunner {
+public class LastNameRunner {
 	
 	public static void main(String[] args) throws SQLException{
-		String query="SELECT last_name  FROM gmail_table where gmail_id=?";
+		String query="SELECT first_name  FROM gmail_table where gmail_id=?";
 	    Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(),ConnectionData.USERNAME.getValue(),
 				ConnectionData.PASSWORD.getValue());
 		
@@ -26,5 +26,6 @@ public class PasswordRunner {
 		} 
 		
 	}
+
 
 }
