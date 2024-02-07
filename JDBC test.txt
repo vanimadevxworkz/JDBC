@@ -1,0 +1,143 @@
+1.JDBC:Java database connectivity.
+It is used to  connect the two applications java and data base.
+*to load the class using Class.forName("com.mysql.cj.jdbc.Driver)
+("com.mysql.cj.jdbc.Driver)->it is called fullyQualifiedName
+*Handle the exception using 3 ways:throws try and catch.
+
+Explnation:
+we connect two application java and database we need one api called jdbc.but jdbc cannot provide the
+implementation so perticular wander provide the one jar file called mavan repo it implements the api.
+
+2.steps:
+1.To load and register the jar file.
+2.Connect to application
+3.creating statement
+4.exceute the statement
+5.to get resullt from the database
+6.close the connection or handle the exception.
+
+3.Statement:Anything is ending with semicolon.statement is an interface.
+it is used to cereate a statement.
+in statment compile and exceution many times.
+
+syntax:
+Statement statement=connection.createStatement();
+
+PreparedStatement:it is used to create a statement.
+in PreparedStatement complie only one time but exceution more time.
+syntax:
+PreparedStatement preparedStatement=connection.excecuteUpdate();
+
+4.
+import.package.java.sql.Connection
+
+
+public class Question3{
+public static void main(String args[]) throws Exception{
+
+Class.forName("com.mysql.cj.jdbc.Driver);
+
+Connection connection=DriverManager.getConnection(url,userName,password);
+if(connection!=null){
+System.out.println("Connection is k");
+}
+else{
+System.out.println("connection is not k");
+}
+}
+}
+
+5.
+
+public enum ConnectionData {	
+URL("jdbc:mysql://localhost:3360/products"),USERNAME("root"),PASSWORD("X-workzodc@123");
+private String value;
+private ConnectionData() {
+this.value=value;
+}
+public String getValue() {
+return value;
+}
+}
+
+public class JdbcDelete{
+
+public static void main(String args[]){
+
+String query="DELETE FROM jdbctable WHERE uname=?";
+try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue,ConnectionData.USERNAME.getValue,ConnectionData.PASSWORD.getValue));
+PreparedStatement preparedStatement=connection. preparedStatement()){
+preparedStatement.setString(1,"sh");
+int rows=preparedStatement.excecuteUpdate();
+}
+catch(SQLException e){
+e.printStackTrace();
+}
+}
+}
+
+
+jdbc operation:
+1.
+
+public enum ConnectionData {	
+URL("jdbc:mysql://localhost:3360/products"),USERNAME("root"),PASSWORD("X-workzodc@123");
+private String value;
+private ConnectionData() {
+this.value=value;
+}
+public String getValue() {
+return value;
+}
+}
+
+public class JdbcSelect{
+
+public static void main(String args[]){
+
+String query="SELECT product_name,product_price From product_table WHERE product_price=?;
+try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue,ConnectionData.USERNAME.getValue,ConnectionData.PASSWORD.getValue));
+PreparedStatement preparedStatement=connection. preparedStatement()){
+preparedStatement.setInt(1,100);
+ ResultSet rows=preparedStatement.resultSet();    
+preparedStatement.excecuteUpdate();
+
+while(rows.Next()){
+system.out.println(rows.setString(1)+""+rows.setInt(2));
+}
+catch(SQLException e){
+e.printStackTrace();
+}
+}
+}
+
+2.
+public class JdbcUpdate{
+
+public static void main(String args[]){
+
+String query="UPDATE employes Set salary=? WHERE department=?";
+try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue,ConnectionData.USERNAME.getValue,ConnectionData.PASSWORD.getValue));
+PreparedStatement preparedStatement=connection. preparedStatement()){
+preparedStatement.setInt(1,5000);
+preparedStatement.setString(2,"IT");
+preparedStatement.exceutUpdate();
+}
+
+catch(SQLException e){
+e.printStackTrace();
+}
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
